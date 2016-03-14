@@ -1,0 +1,26 @@
+-----------------------------
+Kelsey Gross
+March 2016 Khan Academy Application
+Language Agnostic- Total Infection and Limited Infection
+-----------------------------
+
+To run the tests:
+Step 1: Clone the git repo
+Step 2: From within the repo and using python 2.7, run: python ka_infection_tests.py
+
+To run the vizualization:
+Step 1: pip install matplotlib
+Step 2: pip install networkx
+Step 3: From within the repo, run "python visualization.py"
+Step 4: Once you've viewed the graph, exit the pop up
+Step 5: Follow commands in terminal. Observe new graph.
+
+-----------------------------
+
+In my implementation of this problem, I have two tables modeling our users in a normalized relational database fashion. One table, users_versions holds each user_id uniquely once along with the version of the site they currently will experience. The second table can list each user 0 or more times as either a s_uid (student role) or c_uid (coaching role). This table maps each individual relationship between two users. 
+
+total_infection finds all users that are connected to the input user as either a teacher connection or a student connection. Once it's found all connected users in that particular network, it changes those users' state in the users_version table.
+
+limited_infection is highly similar to total_infection. It is a breadth first approach that will check how many users have been touched before beginning the next round of connections, stopping if we have equal to or more than the desired number of users to change state.
+
+It's important to do breadth first adjustments. In the traditional classroom setting, a teacher will coach a class of roughly 30 students. If we begin with that teacher, we want to infect all 30 of her students so that that particular classroom will be on the same version, before checking each of those 30 students to find more distant connections, i.e. their other classrooms or after school programs.
